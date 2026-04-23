@@ -7,16 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * JUnit 5 test suite for Furzefield Leisure Centre Booking System.
- *
- * Five test cases cover one key method from each major class:
- *  1. Member.hasBookingFor()
- *  2. Lesson.isFull() / capacity enforcement
- *  3. BookingSystem.bookLesson() — duplicate check
- *  4. BookingSystem.changeBooking()
- *  5. BookingSystem.attendLesson() + review attachment
- */
+
 public class FLCTest {
 
     private BookingSystem system;
@@ -48,6 +39,7 @@ public class FLCTest {
      * After booking a lesson, hasBookingFor() must return true for that lesson.
      * After cancelling, it should return false (cancelled bookings are excluded).
      */
+    
     @Test
     public void testMemberHasBookingFor() {
         assertFalse(alice.hasBookingFor(yogaLesson),
@@ -135,15 +127,9 @@ public class FLCTest {
         assertEquals(oldSize - 1, yogaLesson.getBookedMembers().size(),
                 "Old lesson member count should decrease by 1");
     }
+    
 
-    // -----------------------------------------------------------------------
-    // Test 5 – BookingSystem.attendLesson() and review attachment
-    // -----------------------------------------------------------------------
-
-    /**
-     * Attending a lesson should set status to "attended" and attach the review.
-     * A second attend attempt on the same booking must be rejected.
-     */
+  
     @Test
     public void testAttendLessonAndReview() {
         Booking booking = system.bookLesson(alice, yogaLesson);
