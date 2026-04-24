@@ -2,12 +2,7 @@ package flc;
 
 import java.util.List;
 
-/**
- * Seeds the system with 10 pre-registered members and enough bookings/reviews
- * to satisfy the coursework requirement (10 members, 20+ reviews).
- *
- * Design pattern: used as a static utility (similar to a Builder helper).
- */
+
 public class DataSeeder {
 
     public static void seed(BookingSystem system) {
@@ -26,37 +21,33 @@ public class DataSeeder {
             system.registerMember(members[i]);
         }
 
-        // Helper: book member into lesson by index in the all-lessons list
-        // We pick specific lessons from the 48-lesson timetable.
-        // lessons index: 0-5 = weekend1, 6-11 = weekend2, etc.
+        
+        book(system, members[0], lessons.get(0));  
+        book(system, members[1], lessons.get(0));  
+        book(system, members[2], lessons.get(1));  
+        book(system, members[3], lessons.get(2));  
+        book(system, members[4], lessons.get(3));  
+        book(system, members[5], lessons.get(3));  
+        book(system, members[6], lessons.get(4));  
+        book(system, members[7], lessons.get(5));  
+        book(system, members[8], lessons.get(0));  
+        book(system, members[9], lessons.get(1));  
 
-        // --- Weekend 1 (April) ---
-        book(system, members[0], lessons.get(0));  // Alice → W1 Sat Morning Yoga
-        book(system, members[1], lessons.get(0));  // Bob   → W1 Sat Morning Yoga
-        book(system, members[2], lessons.get(1));  // Carol → W1 Sat Afternoon Zumba
-        book(system, members[3], lessons.get(2));  // David → W1 Sat Evening Box Fit
-        book(system, members[4], lessons.get(3));  // Emma  → W1 Sun Morning Aquacise
-        book(system, members[5], lessons.get(3));  // Frank → W1 Sun Morning Aquacise
-        book(system, members[6], lessons.get(4));  // Grace → W1 Sun Afternoon Body Blitz
-        book(system, members[7], lessons.get(5));  // Harry → W1 Sun Evening Yoga
-        book(system, members[8], lessons.get(0));  // Isla  → W1 Sat Morning Yoga
-        book(system, members[9], lessons.get(1));  // Jack  → W1 Sat Afternoon Zumba
+        
+        book(system, members[0], lessons.get(6));  
+        book(system, members[1], lessons.get(7));  
+        book(system, members[2], lessons.get(8));  
+        book(system, members[3], lessons.get(9));  
+        book(system, members[4], lessons.get(10)); 
+        book(system, members[5], lessons.get(11)); 
 
-        // --- Weekend 2 (April) ---
-        book(system, members[0], lessons.get(6));  // Alice → W2 Sat Morning Zumba
-        book(system, members[1], lessons.get(7));  // Bob   → W2 Sat Afternoon Box Fit
-        book(system, members[2], lessons.get(8));  // Carol → W2 Sat Evening Aquacise
-        book(system, members[3], lessons.get(9));  // David → W2 Sun Morning Body Blitz
-        book(system, members[4], lessons.get(10)); // Emma  → W2 Sun Afternoon Yoga
-        book(system, members[5], lessons.get(11)); // Frank → W2 Sun Evening Zumba
+        
+        book(system, members[6], lessons.get(12)); 
+        book(system, members[7], lessons.get(13)); 
+        book(system, members[8], lessons.get(14)); 
+        book(system, members[9], lessons.get(15)); 
 
-        // --- Weekend 3 (April) ---
-        book(system, members[6], lessons.get(12)); // Grace → W3 Sat Morning Aquacise
-        book(system, members[7], lessons.get(13)); // Harry → W3 Sat Afternoon Body Blitz
-        book(system, members[8], lessons.get(14)); // Isla  → W3 Sat Evening Yoga
-        book(system, members[9], lessons.get(15)); // Jack  → W3 Sun Morning Zumba
-
-        // --- Attend lessons and write reviews (20+ reviews) ---
+        
         attend(system, members[0], lessons.get(0),  "Wonderful session, very calming.",      5);
         attend(system, members[1], lessons.get(0),  "Enjoyed the instructor's guidance.",     4);
         attend(system, members[8], lessons.get(0),  "Could be a bit longer.",                 3);
@@ -82,27 +73,25 @@ public class DataSeeder {
         attend(system, members[0], lessons.get(2),  "Great way to end the weekend.",           4);
     }
 
-    // -----------------------------------------------------------------------
-    // Private helpers
-    // -----------------------------------------------------------------------
+   
 
     private static Booking book(BookingSystem sys, Member m, Lesson l) {
         Booking b = sys.bookLesson(m, l);
         if (b == null) {
-            // silently skip seed conflicts (e.g. capacity already filled)
+            
         }
         return b;
     }
 
     private static void attend(BookingSystem sys, Member m, Lesson l, String text, int rating) {
-        // Find the booking for this member + lesson
+        
         for (Booking b : sys.getAllBookings()) {
             if (b.getMember().equals(m) && b.getLesson().equals(l)) {
                 sys.attendLesson(b, text, rating);
                 return;
             }
         }
-        // If booking doesn't exist, create and immediately attend
+        
         Booking b = sys.bookLesson(m, l);
         if (b != null) sys.attendLesson(b, text, rating);
     }

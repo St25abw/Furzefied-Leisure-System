@@ -4,17 +4,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Command-line interface entry point for Furzefield Leisure Centre Booking System.
- *
- * Functionalities:
- *  1. Book a group exercise lesson
- *  2. Change / Cancel a booking
- *  3. Attend a lesson (write review + rating)
- *  4. Monthly lesson report
- *  5. Monthly champion lesson type report
- *  0. Exit
- */
+
 public class Main {
 
     private static BookingSystem system;
@@ -48,9 +38,7 @@ public class Main {
         scanner.close();
     }
 
-    // -----------------------------------------------------------------------
-    // Main menu
-    // -----------------------------------------------------------------------
+    
 
     private static void printMainMenu() {
         System.out.println("\n------------------------------------------------------------");
@@ -65,9 +53,7 @@ public class Main {
         System.out.println("------------------------------------------------------------");
     }
 
-    // -----------------------------------------------------------------------
-    // 1. Book a lesson
-    // -----------------------------------------------------------------------
+   
 
     private static void bookLesson() {
         System.out.println("\n--- Book a Lesson ---");
@@ -108,9 +94,7 @@ public class Main {
         }
     }
 
-    // -----------------------------------------------------------------------
-    // 2. Change / Cancel
-    // -----------------------------------------------------------------------
+    
 
     private static void changeOrCancelBooking() {
         System.out.println("\n--- Change / Cancel a Booking ---");
@@ -167,9 +151,7 @@ public class Main {
         }
     }
 
-    // -----------------------------------------------------------------------
-    // 3. Attend a lesson
-    // -----------------------------------------------------------------------
+    
 
     private static void attendLesson() {
         System.out.println("\n--- Attend a Lesson ---");
@@ -206,9 +188,7 @@ public class Main {
         }
     }
 
-    // -----------------------------------------------------------------------
-    // 4 & 5. Reports
-    // -----------------------------------------------------------------------
+    
 
     private static void monthlyLessonReport() {
         int month = readInt("  Enter month number (e.g., 4 for April, 5 for May): ");
@@ -220,9 +200,7 @@ public class Main {
         system.printMonthlyChampionReport(month);
     }
 
-    // -----------------------------------------------------------------------
-    // Helpers
-    // -----------------------------------------------------------------------
+   
 
     private static void printMembers() {
         System.out.println("\n  Pre-registered members:");

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="flc.FLCTest" time="0.64" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="flc.FLCTest" time="0.589" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,8 +15,9 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Apache NetBeans\jdk\bin"/>
-    <property name="sun.java.command" value="C:\Users\HP\AppData\Local\Temp\surefire15757428916929314579\surefirebooter-20260423212615834_3.jar C:\Users\HP\AppData\Local\Temp\surefire15757428916929314579 2026-04-23T21-26-09_508-jvmRun1 surefire-20260423212615834_1tmp surefire_0-20260423212615834_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\HP\AppData\Local\Temp\surefire16634018857387248152\surefirebooter-20260424003649467_3.jar C:\Users\HP\AppData\Local\Temp\surefire16634018857387248152 2026-04-24T00-36-48_797-jvmRun1 surefire-20260424003649467_1tmp surefire_0-20260424003649467_2tmp"/>
     <property name="jdk.debug" value="release"/>
+    <property name="test" value="flc.FLCTest"/>
     <property name="surefire.test.class.path" value="C:\Users\HP\Desktop\System_FLC\FLC_Submission\target\test-classes;C:\Users\HP\Desktop\System_FLC\FLC_Submission\target\classes;C:\Users\HP\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\HP\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\HP\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\HP\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\HP\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\HP\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\HP\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\HP\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\HP"/>
@@ -30,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\HP\AppData\Local\Temp\surefire15757428916929314579\surefirebooter-20260423212615834_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\HP\AppData\Local\Temp\surefire16634018857387248152\surefirebooter-20260424003649467_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.2+10-LTS"/>
@@ -61,18 +62,18 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testAttendLessonAndReview" classname="flc.FLCTest" time="0.288">
+  <testcase name="testAttendLessonAndReview" classname="flc.FLCTest" time="0.147">
     <system-out><![CDATA[  [ERROR] Booking status is 'attended'. Cannot attend.
 ]]></system-out>
   </testcase>
-  <testcase name="testChangeBooking" classname="flc.FLCTest" time="0.033"/>
-  <testcase name="testNoDuplicateBooking" classname="flc.FLCTest" time="0.022">
+  <testcase name="testChangeBooking" classname="flc.FLCTest" time="0.006"/>
+  <testcase name="testNoDuplicateBooking" classname="flc.FLCTest" time="0.009">
     <system-out><![CDATA[  [ERROR] You already have a booking for this lesson.
 ]]></system-out>
   </testcase>
-  <testcase name="testLessonCapacityEnforcement" classname="flc.FLCTest" time="0.011">
+  <testcase name="testLessonCapacityEnforcement" classname="flc.FLCTest" time="0.009">
     <system-out><![CDATA[  [ERROR] This lesson is fully booked (capacity: 4).
 ]]></system-out>
   </testcase>
-  <testcase name="testMemberHasBookingFor" classname="flc.FLCTest" time="0.009"/>
+  <testcase name="testMemberHasBookingFor" classname="flc.FLCTest" time="0.006"/>
 </testsuite>

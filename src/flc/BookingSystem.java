@@ -3,10 +3,7 @@ package flc;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Core business-logic facade for Furzefield Leisure Centre.
- * Follows the Facade design pattern: wraps Timetable, Member, Booking, Review.
- */
+
 public class BookingSystem {
     private Timetable timetable;
     private List<Member> members;
@@ -18,10 +15,7 @@ public class BookingSystem {
         this.allBookings = new ArrayList<>();
     }
 
-    // -----------------------------------------------------------------------
-    // Member management
-    // -----------------------------------------------------------------------
-
+   
     public void registerMember(Member m) { members.add(m); }
 
     public Member findMemberById(int id) {
@@ -40,10 +34,7 @@ public class BookingSystem {
 
     public List<Member> getAllMembers() { return members; }
 
-    // -----------------------------------------------------------------------
-    // Timetable queries
-    // -----------------------------------------------------------------------
-
+   
     public Timetable getTimetable() { return timetable; }
 
     public List<Lesson> getLessonsByDay(String day) {
@@ -54,26 +45,20 @@ public class BookingSystem {
         return timetable.getLessonsByType(type);
     }
 
-    // -----------------------------------------------------------------------
-    // Booking operations
-    // -----------------------------------------------------------------------
-
-    /**
-     * Books a member into a lesson.
-     * @return the new Booking on success, or null with an error message printed.
-     */
+   
+  
     public Booking bookLesson(Member member, Lesson lesson) {
-        // Duplicate check
+        
         if (member.hasBookingFor(lesson)) {
             System.out.println("  [ERROR] You already have a booking for this lesson.");
             return null;
         }
-        // Capacity check
+        
         if (lesson.isFull()) {
             System.out.println("  [ERROR] This lesson is fully booked (capacity: 4).");
             return null;
         }
-        // Time-conflict check
+        
         if (member.hasTimeConflict(lesson)) {
             System.out.println("  [ERROR] You already have a booking at this time slot.");
             return null;
@@ -86,10 +71,7 @@ public class BookingSystem {
         return booking;
     }
 
-    /**
-     * Changes an existing booking to a new lesson.
-     * The booking ID is preserved; status is updated to "changed".
-     */
+   
     public boolean changeBooking(Booking booking, Lesson newLesson) {
         if (booking.getStatus().equals("cancelled") || booking.getStatus().equals("attended")) {
             System.out.println("  [ERROR] Cannot change a " + booking.getStatus() + " booking.");
@@ -105,20 +87,17 @@ public class BookingSystem {
             return false;
         }
 
-        // Release old lesson slot
+       
         booking.getLesson().removeMember(member);
 
-        // Assign new lesson
+        
         booking.setLesson(newLesson);
         booking.setStatus("changed");
         newLesson.addMember(member);
         return true;
     }
 
-    /**
-     * Cancels a booking. Releases the slot in the lesson.
-     * The booking ID is retired (not reused).
-     */
+
     public boolean cancelBooking(Booking booking) {
         if (booking.getStatus().equals("cancelled")) {
             System.out.println("  [ERROR] Booking is already cancelled.");
@@ -133,9 +112,7 @@ public class BookingSystem {
         return true;
     }
 
-    /**
-     * Marks a booking as attended and attaches a review.
-     */
+  
     public boolean attendLesson(Booking booking, String reviewText, int rating) {
         if (!booking.getStatus().equals("booked") && !booking.getStatus().equals("changed")) {
             System.out.println("  [ERROR] Booking status is '" + booking.getStatus() + "'. Cannot attend.");
@@ -143,19 +120,12 @@ public class BookingSystem {
         }
         Review review = new Review(booking.getMember(), reviewText, rating);
         booking.addReview(review);
-        booking.getLesson().getBookedMembers(); // ensure member still listed
+        booking.getLesson().getBookedMembers(); 
         booking.setStatus("attended");
         return true;
     }
 
-    // -----------------------------------------------------------------------
-    // Reporting
-    // -----------------------------------------------------------------------
-
-    /**
-     * Monthly lesson report: for each lesson in the given month that had at
-     * least one attendee, print attendee count and average rating.
-     */
+  
     public void printMonthlyLessonReport(int month) {
         List<Lesson> lessons = timetable.getLessonsByMonth(month);
         System.out.println("\n========================================================");
@@ -176,10 +146,7 @@ public class BookingSystem {
         System.out.println("========================================================\n");
     }
 
-    /**
-     * Monthly champion report: totals income per exercise type in the given
-     * month based on attended bookings, then prints a ranked list.
-     */
+  
     public void printMonthlyChampionReport(int month) {
         double[] incomes = new double[ExerciseType.values().length];
 
@@ -210,9 +177,7 @@ public class BookingSystem {
         System.out.println("========================================================\n");
     }
 
-    // -----------------------------------------------------------------------
-    // Helpers
-    // -----------------------------------------------------------------------
+    
 
     private int countAttendees(Lesson lesson) {
         int count = 0;

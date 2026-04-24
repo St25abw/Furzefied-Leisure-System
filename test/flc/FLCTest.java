@@ -26,19 +26,12 @@ public class FLCTest {
         system.registerMember(alice);
         system.registerMember(bob);
 
-        // Use first two lessons from the timetable
-        yogaLesson  = tt.getAllLessons().get(0); // W1 Sat Morning Yoga
-        zumbaLesson = tt.getAllLessons().get(1); // W1 Sat Afternoon Zumba
+        
+        yogaLesson  = tt.getAllLessons().get(0); 
+        zumbaLesson = tt.getAllLessons().get(1); 
     }
 
-    // -----------------------------------------------------------------------
-    // Test 1 – Member.hasBookingFor()
-    // -----------------------------------------------------------------------
-
-    /**
-     * After booking a lesson, hasBookingFor() must return true for that lesson.
-     * After cancelling, it should return false (cancelled bookings are excluded).
-     */
+   
     
     @Test
     public void testMemberHasBookingFor() {
@@ -56,16 +49,9 @@ public class FLCTest {
                 "After cancellation, hasBookingFor should be false");
     }
 
-    // -----------------------------------------------------------------------
-    // Test 2 – Lesson capacity (Lesson.isFull())
-    // -----------------------------------------------------------------------
-
-    /**
-     * A lesson accepts at most 4 members; the 5th booking should fail.
-     */
-    @Test
+        @Test
     public void testLessonCapacityEnforcement() {
-        // Create 4 extra members and fill the lesson
+        
         for (int i = 0; i < 4; i++) {
             Member m = new Member("TestMember" + i);
             system.registerMember(m);
@@ -74,18 +60,12 @@ public class FLCTest {
         }
         assertTrue(yogaLesson.isFull(), "Lesson should be full after 4 bookings");
 
-        // 5th attempt (alice) must fail
+        
         Booking overflow = system.bookLesson(alice, yogaLesson);
         assertNull(overflow, "5th booking should fail — lesson is at capacity");
     }
 
-    // -----------------------------------------------------------------------
-    // Test 3 – BookingSystem.bookLesson() duplicate prevention
-    // -----------------------------------------------------------------------
-
-    /**
-     * Booking the same lesson twice by the same member must be rejected.
-     */
+    
     @Test
     public void testNoDuplicateBooking() {
         Booking first = system.bookLesson(alice, yogaLesson);
@@ -94,21 +74,14 @@ public class FLCTest {
         Booking second = system.bookLesson(alice, yogaLesson);
         assertNull(second, "Duplicate booking for same lesson should be rejected");
 
-        // Confirm only one booking exists for alice in this lesson
+       
         long count = system.getAllBookings().stream()
                 .filter(b -> b.getMember().equals(alice) && b.getLesson().equals(yogaLesson))
                 .count();
         assertEquals(1, count, "Exactly one booking should exist for alice in yogaLesson");
     }
 
-    // -----------------------------------------------------------------------
-    // Test 4 – BookingSystem.changeBooking()
-    // -----------------------------------------------------------------------
-
-    /**
-     * Changing a booking to a new lesson should update the lesson reference,
-     * set status to "changed", release the old lesson slot, and add to the new.
-     */
+   
     @Test
     public void testChangeBooking() {
         Booking booking = system.bookLesson(alice, yogaLesson);
@@ -144,7 +117,7 @@ public class FLCTest {
         assertEquals(5, reviews.get(0).getRating(), "Rating should be 5");
         assertEquals("Great session!", reviews.get(0).getReviewText());
 
-        // Attending again should fail
+        
         boolean secondAttend = system.attendLesson(booking, "Trying again", 3);
         assertFalse(secondAttend, "Attending an already-attended booking should fail");
         assertEquals(1, booking.getReviews().size(), "Review count should still be 1");

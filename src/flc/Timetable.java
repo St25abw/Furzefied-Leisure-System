@@ -3,10 +3,7 @@ package flc;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Holds the complete timetable for 8 weekends (48 lessons).
- * Provides lookup by day and by exercise type.
- */
+
 public class Timetable {
     private List<Lesson> lessons;
 
@@ -18,7 +15,7 @@ public class Timetable {
 
     public List<Lesson> getAllLessons() { return lessons; }
 
-    /** Return lessons for a specific day name ("Saturday" or "Sunday"). */
+   
     public List<Lesson> getLessonsByDay(String day) {
         List<Lesson> result = new ArrayList<>();
         for (Lesson l : lessons) {
@@ -27,7 +24,7 @@ public class Timetable {
         return result;
     }
 
-    /** Return lessons matching a given exercise type. */
+   
     public List<Lesson> getLessonsByType(ExerciseType type) {
         List<Lesson> result = new ArrayList<>();
         for (Lesson l : lessons) {
@@ -36,7 +33,7 @@ public class Timetable {
         return result;
     }
 
-    /** Return lessons for a specific month. */
+    
     public List<Lesson> getLessonsByMonth(int month) {
         List<Lesson> result = new ArrayList<>();
         for (Lesson l : lessons) {
@@ -45,7 +42,7 @@ public class Timetable {
         return result;
     }
 
-    /** Find a lesson by its ID. Returns null if not found. */
+    
     public Lesson findById(int id) {
         for (Lesson l : lessons) {
             if (l.getLessonId() == id) return l;
@@ -53,16 +50,14 @@ public class Timetable {
         return null;
     }
 
-    /** Initialise 8 weekends of timetable data (48 lessons, 6 per weekend). */
+    
     public static Timetable buildDefaultTimetable() {
         Timetable tt = new Timetable();
 
-        // Weekends 1-4 = April (month 4), Weekends 5-8 = May (month 5)
-        // Pattern: Sat Morning, Sat Afternoon, Sat Evening, Sun Morning, Sun Afternoon, Sun Evening
-        // 5 exercise types rotated across the 8 weekends for variety.
+      
 
         Object[][] schedule = {
-            // {weekendNo, month, SatMorn, SatAfter, SatEve, SunMorn, SunAfter, SunEve}
+          
             {1, 4, ExerciseType.YOGA,      ExerciseType.ZUMBA,      ExerciseType.BOX_FIT,    ExerciseType.AQUACISE,   ExerciseType.BODY_BLITZ, ExerciseType.YOGA},
             {2, 4, ExerciseType.ZUMBA,     ExerciseType.BOX_FIT,    ExerciseType.AQUACISE,   ExerciseType.BODY_BLITZ, ExerciseType.YOGA,       ExerciseType.ZUMBA},
             {3, 4, ExerciseType.AQUACISE,  ExerciseType.BODY_BLITZ, ExerciseType.YOGA,       ExerciseType.ZUMBA,      ExerciseType.BOX_FIT,    ExerciseType.AQUACISE},

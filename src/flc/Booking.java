@@ -3,10 +3,7 @@ package flc;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represents a booking made by a member for a lesson.
- * Status lifecycle: booked → attended | changed | cancelled
- */
+
 public class Booking {
     private static int bookingCounter = 1;
 
@@ -24,14 +21,14 @@ public class Booking {
         this.reviews   = new ArrayList<>();
     }
 
-    // --- Getters ---
+    
     public int    getBookingId() { return bookingId; }
     public Member getMember()    { return member; }
     public Lesson getLesson()    { return lesson; }
     public String getStatus()    { return status; }
     public List<Review> getReviews() { return reviews; }
 
-    // --- Setters ---
+   
     public void setLesson(Lesson lesson) { this.lesson = lesson; }
     public void setStatus(String status) { this.status = status; }
 

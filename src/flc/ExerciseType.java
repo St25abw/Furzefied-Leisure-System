@@ -1,8 +1,5 @@
 package flc;
 
-/**
- * Enumeration of all supported group exercise types, each with a fixed price.
- */
 public enum ExerciseType {
     YOGA("Yoga", 12.00),
     ZUMBA("Zumba", 10.00),
@@ -24,7 +21,7 @@ public enum ExerciseType {
     @Override
     public String toString() { return displayName; }
 
-    /** Case-insensitive lookup by display name. Returns null if not found. */
+   
     public static ExerciseType fromName(String name) {
         for (ExerciseType t : values()) {
             if (t.displayName.equalsIgnoreCase(name)) return t;

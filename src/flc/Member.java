@@ -3,9 +3,7 @@ package flc;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represents a registered member of Furzefield Leisure Centre.
- */
+
 public class Member {
     private static int idCounter = 1;
 
@@ -25,9 +23,7 @@ public class Member {
 
     public void addBooking(Booking b) { bookings.add(b); }
 
-    /**
-     * Returns active (non-cancelled) bookings that haven't been attended yet.
-     */
+   
     public List<Booking> getActiveBookings() {
         List<Booking> active = new ArrayList<>();
         for (Booking b : bookings) {
@@ -39,10 +35,7 @@ public class Member {
         return active;
     }
 
-    /**
-     * Checks whether this member already has a booking for the given lesson
-     * (excluding cancelled bookings).
-     */
+    
     public boolean hasBookingFor(Lesson lesson) {
         for (Booking b : bookings) {
             if (!b.getStatus().equals("cancelled") && b.getLesson().equals(lesson)) {
@@ -52,10 +45,7 @@ public class Member {
         return false;
     }
 
-    /**
-     * Checks for a time conflict: returns true if the member already has a
-     * non-cancelled booking on the same day and time slot.
-     */
+   
     public boolean hasTimeConflict(Lesson candidate) {
         for (Booking b : bookings) {
             if (b.getStatus().equals("cancelled")) continue;

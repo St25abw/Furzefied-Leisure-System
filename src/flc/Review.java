@@ -1,9 +1,6 @@
 package flc;
 
-/**
- * Stores the review text and numerical rating (1-5) a member submits
- * after attending a lesson.
- */
+
 public class Review {
     private Member author;
     private String reviewText;
